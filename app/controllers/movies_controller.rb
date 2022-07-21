@@ -5,4 +5,16 @@ class MoviesController < ApplicationController
     render json: movies
   end
 
+  def create
+    movie = Movie.create(movies_params)
+    render json: movie, status: :created 
+  end
+
+  private
+
+  #movies paraam
+  def movies_params
+    params.permit(:title, :year, :length, :director, :description, :poster_url, :category, :discount, :female_director)
+  end
+
 end
